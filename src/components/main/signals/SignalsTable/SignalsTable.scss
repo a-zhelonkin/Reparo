@@ -1,0 +1,38 @@
+table.root {
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  colgroup {
+    col.type {
+      width: 50px;
+    }
+
+    col.amplitude {
+      width: 100px;
+    }
+
+    col.frequency {
+      width: 100px;
+    }
+
+    col.phase {
+      width: 100px;
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        text-align: center;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      &.selected {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

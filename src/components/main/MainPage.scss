@@ -1,0 +1,9 @@
+@import "src/defaults";
+
+.root {
+  padding: 32px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 400px 1fr;
+  grid-template-areas: "signals charts";
+}

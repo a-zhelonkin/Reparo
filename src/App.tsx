@@ -1,5 +1,5 @@
-import { RegeneratorPage } from "components/regenerator/RegeneratorPage";
+import { MainPage } from "components/main/MainPage";
 import "global.scss";
 import React from "react";
 
-export const App: React.FC = () => <RegeneratorPage />;
+export const App: React.FC = () => <MainPage />;
