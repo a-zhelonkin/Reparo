@@ -1,49 +1,17 @@
-.root {
-  overflow: auto;
+@import "src/defaults";
 
-  table {
-    table-layout: fixed;
-    border-collapse: collapse;
+.type {
+  width: 50px;
+}
 
-    colgroup {
-      col.type {
-        width: 50px;
-      }
+.amplitude {
+  width: 100px;
+}
 
-      col.amplitude {
-        width: 100px;
-      }
+.frequency {
+  width: 100px;
+}
 
-      col.frequency {
-        width: 100px;
-      }
-
-      col.phase {
-        width: 100px;
-      }
-    }
-
-    thead {
-      th {
-        position: sticky;
-        top: 0;
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          text-align: center;
-        }
-
-        &:hover {
-          background: rgba(0, 0, 0, 0.1);
-        }
-
-        &.selected {
-          background: rgba(0, 0, 0, 0.2);
-        }
-      }
-    }
-  }
+.phase {
+  width: 100px;
 }

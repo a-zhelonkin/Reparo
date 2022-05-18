@@ -1,0 +1,40 @@
+@import "src/defaults";
+
+.root {
+  overflow: auto;
+
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    thead {
+      tr {
+        th {
+          padding: 4px;
+          background: $background;
+          position: sticky;
+          top: 0;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 4px;
+          text-align: center;
+          border-left: 1px solid $text;
+          border-right: 1px solid $text;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+
+        &.selected {
+          background: rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+}

@@ -1,51 +1,47 @@
-import cn from "classnames";
+import { ReparoTable } from "components/shared/ReparoTable/ReparoTable";
 import { SignalModel } from "domain/SignalModel";
 import React from "react";
 import styles from "./SignalsTable.scss";
 
 interface Props {
+  readonly className?: string;
   readonly items: ReadonlyArray<SignalModel>;
   readonly selectedItem: SignalModel;
   readonly onSelectItem: (item: SignalModel) => void;
 }
 
 export const SignalsTable: React.FC<Props> = ({
+  className,
   items,
   selectedItem,
   onSelectItem,
 }) => (
-  <div className={styles.root}>
-    <table>
-      <colgroup>
-        <col className={styles.type} />
-        <col className={styles.amplitude} />
-        <col className={styles.frequency} />
-        <col className={styles.phase} />
-      </colgroup>
-      <thead>
-        <tr>
-          <th>Тип</th>
-          <th>Амплитуда</th>
-          <th>Частота</th>
-          <th>Фаза</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map((item, index) => (
-          <tr
-            key={index}
-            className={cn({
-              [styles.selected]: selectedItem && selectedItem.id === item.id,
-            })}
-            onClick={() => onSelectItem(item)}
-          >
-            <td>{item.type}</td>
-            <td>{item.amplitude}</td>
-            <td>{item.frequency}</td>
-            <td>{item.phase}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+  <ReparoTable
+    className={className}
+    items={items}
+    selectedItem={selectedItem}
+    onSelectItem={onSelectItem}
+    columns={[
+      {
+        colClassName: styles.type,
+        title: "Тип",
+        renderCell: (item) => item.type,
+      },
+      {
+        colClassName: styles.amplitude,
+        title: "Амплитуда",
+        renderCell: (item) => item.amplitude,
+      },
+      {
+        colClassName: styles.frequency,
+        title: "Частота",
+        renderCell: (item) => item.frequency,
+      },
+      {
+        colClassName: styles.phase,
+        title: "Фаза",
+        renderCell: (item) => item.phase,
+      },
+    ]}
+  />
 );

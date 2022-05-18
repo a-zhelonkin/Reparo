@@ -1,30 +1,32 @@
 import { Point } from "domain/Point";
 import { QueryStatus } from "domain/QueryStatus";
-import { ResolutionModel } from "domain/ResolutionModel";
-import { SignalModel } from "domain/SignalModel";
+import { RestorationModel } from "domain/RestorationModel";
 import React from "react";
-import { calculateSignal } from "utils/signalUtils";
+import { repairSignal } from "utils/reparoUtils";
 
-interface UseCalculateSignalOptions {
-  readonly signals: ReadonlyArray<SignalModel>;
-  readonly resolution: ResolutionModel;
+interface UseRepairSignalOptions {
+  readonly signal: ReadonlyArray<Point>;
+  readonly restoration: RestorationModel;
 }
 
-interface UseCalculateSignalState {
+interface UseRepairSignalState {
   readonly status: QueryStatus;
   readonly points: Point[];
 }
 
-export function useCalculateSignal({
-  signals,
-  resolution,
-}: UseCalculateSignalOptions): UseCalculateSignalState {
+export function useRepairSignal({
+  signal,
+  restoration,
+}: UseRepairSignalOptions): UseRepairSignalState {
   const [status, setStatus] = React.useState(QueryStatus.Initial);
   const [points, setPoints] = React.useState([]);
 
   React.useEffect(() => {
     setStatus(QueryStatus.Requesting);
-    calculateSignal({ signals, resolution })
+    repairSignal({
+      signal,
+      restoration,
+    })
       .then((newPoints) => {
         setPoints(newPoints);
         setStatus(QueryStatus.Success);
@@ -32,7 +34,7 @@ export function useCalculateSignal({
       .catch(() => {
         setStatus(QueryStatus.Error);
       });
-  }, [signals, resolution]);
+  }, [signal, restoration]);
 
   return { status, points };
 }
