@@ -15,8 +15,8 @@ export interface SignalModel {
 export const defaultSignalModel: Readonly<SignalModel> = {
   id: defaultGuid,
   type: SignalModelType.Sin,
-  amplitude: 0,
-  frequency: 0,
+  amplitude: 1,
+  frequency: 0.5,
   phase: 0,
 };
 

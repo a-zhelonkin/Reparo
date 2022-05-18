@@ -1,37 +1,48 @@
-table.root {
-  table-layout: fixed;
-  border-collapse: collapse;
+.root {
+  overflow: auto;
 
-  colgroup {
-    col.type {
-      width: 50px;
-    }
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
 
-    col.amplitude {
-      width: 100px;
-    }
-
-    col.frequency {
-      width: 100px;
-    }
-
-    col.phase {
-      width: 100px;
-    }
-  }
-
-  tbody {
-    tr {
-      td {
-        text-align: center;
+    colgroup {
+      col.type {
+        width: 50px;
       }
 
-      &:hover {
-        background: rgba(0, 0, 0, 0.1);
+      col.amplitude {
+        width: 100px;
       }
 
-      &.selected {
-        background: rgba(0, 0, 0, 0.2);
+      col.frequency {
+        width: 100px;
+      }
+
+      col.phase {
+        width: 100px;
+      }
+    }
+
+    thead {
+      th {
+        position: sticky;
+        top: 0;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          text-align: center;
+        }
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+
+        &.selected {
+          background: rgba(0, 0, 0, 0.2);
+        }
       }
     }
   }

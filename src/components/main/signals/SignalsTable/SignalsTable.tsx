@@ -14,36 +14,38 @@ export const SignalsTable: React.FC<Props> = ({
   selectedItem,
   onSelectItem,
 }) => (
-  <table className={styles.root}>
-    <colgroup>
-      <col className={styles.type} />
-      <col className={styles.amplitude} />
-      <col className={styles.frequency} />
-      <col className={styles.phase} />
-    </colgroup>
-    <thead>
-      <tr>
-        <th>Тип</th>
-        <th>Амплитуда</th>
-        <th>Частота</th>
-        <th>Фаза</th>
-      </tr>
-    </thead>
-    <tbody>
-      {items.map((item, index) => (
-        <tr
-          key={index}
-          className={cn({
-            [styles.selected]: selectedItem && selectedItem.id === item.id,
-          })}
-          onClick={() => onSelectItem(item)}
-        >
-          <td>{item.type}</td>
-          <td>{item.amplitude}</td>
-          <td>{item.frequency}</td>
-          <td>{item.phase}</td>
+  <div className={styles.root}>
+    <table>
+      <colgroup>
+        <col className={styles.type} />
+        <col className={styles.amplitude} />
+        <col className={styles.frequency} />
+        <col className={styles.phase} />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Амплитуда</th>
+          <th>Частота</th>
+          <th>Фаза</th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {items.map((item, index) => (
+          <tr
+            key={index}
+            className={cn({
+              [styles.selected]: selectedItem && selectedItem.id === item.id,
+            })}
+            onClick={() => onSelectItem(item)}
+          >
+            <td>{item.type}</td>
+            <td>{item.amplitude}</td>
+            <td>{item.frequency}</td>
+            <td>{item.phase}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 );

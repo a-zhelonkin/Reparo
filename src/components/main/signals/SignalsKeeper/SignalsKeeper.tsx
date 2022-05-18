@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { SignalEditor } from "components/main/signals/SignalEditor/SignalEditor";
 import { SignalsTable } from "components/main/signals/SignalsTable/SignalsTable";
 import { ReparoButton } from "components/shared/ReparoButton/ReparoButton";
@@ -7,11 +8,16 @@ import { guid } from "utils/guidUtils";
 import styles from "./SignalsKeeper.scss";
 
 interface Props {
+  readonly className?: string;
   readonly items: ReadonlyArray<SignalModel>;
   readonly onChange: (items: SignalModel[]) => void;
 }
 
-export const SignalsKeeper: React.FC<Props> = ({ items, onChange }) => {
+export const SignalsKeeper: React.FC<Props> = ({
+  className,
+  items,
+  onChange,
+}) => {
   const [draft, setDraft] = React.useState(defaultSignalModel);
   const [selected, setSelected] = React.useState<SignalModel>();
   const onChangeDraft = (changes: Partial<SignalModel>) => {
@@ -42,7 +48,7 @@ export const SignalsKeeper: React.FC<Props> = ({ items, onChange }) => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className={cn(styles.root, className)}>
       <SignalEditor value={draft} onChange={onChangeDraft} />
 
       <div className={styles.buttons}>

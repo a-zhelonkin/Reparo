@@ -3,7 +3,22 @@
 .root {
   padding: 32px;
   display: grid;
-  grid-template-rows: 1fr;
+  grid-gap: 8px;
+  grid-template-rows: min-content 400px;
   grid-template-columns: 400px 1fr;
-  grid-template-areas: "signals charts";
+  grid-template-areas:
+    "resolution charts"
+    "signals    charts";
+
+  .resolution {
+    grid-area: resolution;
+  }
+
+  .signals {
+    grid-area: signals;
+  }
+
+  .charts {
+    grid-area: charts;
+  }
 }
