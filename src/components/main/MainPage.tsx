@@ -13,12 +13,64 @@ import {
   RestorationModel,
 } from "domain/RestorationModel";
 import { SignalModel } from "domain/SignalModel";
+import { SignalModelType } from "domain/SignalModelType";
 import { useCalculateSignal } from "hooks/useCalculateSignal";
 import { useRepairSignal } from "hooks/useRepairSignal";
 import React from "react";
+import { guid } from "utils/guidUtils";
 
 export const MainPage: React.FC = () => {
-  const [signals, setSignals] = React.useState<ReadonlyArray<SignalModel>>([]);
+  const [signals, setSignals] = React.useState<ReadonlyArray<SignalModel>>([
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.2,
+      frequency: 0.1,
+      phase: 0.873,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.35,
+      frequency: 0.25,
+      phase: 1.0123,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.5,
+      frequency: 0.3,
+      phase: 0.00278,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.7,
+      frequency: 0.35,
+      phase: -1.70989,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 1,
+      frequency: 0.4,
+      phase: 1.1141234123,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.7,
+      frequency: 0.45,
+      phase: -0.07598623498,
+    },
+    {
+      id: guid(),
+      type: SignalModelType.Sin,
+      amplitude: 0.15,
+      frequency: 0.5,
+      phase: 0.4986234987,
+    },
+  ]);
   const [resolution, setResolution] = React.useState(defaultResolutionModel);
   const [restoration, setRestoraction] = React.useState(
     defaultRestorationModel

@@ -19,23 +19,24 @@ export function repairSignal({
 }: RepairSignalOptions): Promise<Point[]> {
   return new Promise((resolve) => {
     const points: Point[] = [];
+
+    let s1 = 0;
+    let s2 = 0;
+
+    for (let i = 0; i < crossing; i += 2) {
+      const leftIndex = startIndex - i;
+      const rightIndex = startIndex + i + length;
+
+      s1 += signal[leftIndex].y - signal[leftIndex - 1].y;
+      s2 += signal[rightIndex + 1].y - signal[rightIndex + 2].y;
+    }
+
+    const s =
+      length % 2 === 0
+        ? (s1 - s2) / (crossing + crossing)
+        : (s1 + s2) / (crossing + crossing);
+
     for (let j = 1; j <= length; j += 1) {
-      let s1 = 0;
-      let s2 = 0;
-
-      for (let i = 0; i < crossing; i += 2) {
-        const leftIndex = startIndex - i;
-        const rightIndex = startIndex + i + length;
-
-        s1 += signal[leftIndex].y - signal[leftIndex - 1].y;
-        s2 += signal[rightIndex + 1].y - signal[rightIndex + 2].y;
-      }
-
-      const s =
-        length % 2 === 0
-          ? (s1 - s2) / (crossing + crossing)
-          : (s1 + s2) / (crossing + crossing);
-
       const preY =
         (signal[startIndex + j - crossing].y +
           signal[startIndex + j + crossing].y) /
@@ -43,7 +44,7 @@ export function repairSignal({
 
       points.push({
         x: signal[startIndex + j].x,
-        y: preY + (j % 2) === 0 ? s : -s,
+        y: preY + (j % 2 === 0 ? s : -s),
       });
     }
 

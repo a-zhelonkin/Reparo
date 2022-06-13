@@ -16,7 +16,7 @@ export const defaultSignalModel: Readonly<SignalModel> = {
   id: defaultGuid,
   type: SignalModelType.Sin,
   amplitude: 1,
-  frequency: 0.5,
+  frequency: 1,
   phase: 0,
 };
 
@@ -24,5 +24,5 @@ export function calculateSignalModel(
   { type, amplitude, frequency, phase }: SignalModel,
   t: number
 ): number {
-  return amplitude * calculateSignalModelType(type, frequency * t + phase);
+  return amplitude * calculateSignalModelType(type, 2 * Math.PI * frequency * t + phase);
 }

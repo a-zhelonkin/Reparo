@@ -5,7 +5,7 @@ export interface RestorationModel {
 }
 
 export const defaultRestorationModel: Readonly<RestorationModel> = {
-  startIndex: 1000,
-  length: 500,
-  crossing: 100,
+  startIndex: 340,
+  length: 10,
+  crossing: 12,
 };

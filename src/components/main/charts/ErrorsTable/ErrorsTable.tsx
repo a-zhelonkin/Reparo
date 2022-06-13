@@ -21,7 +21,7 @@ export const ErrorsTable: React.FC<Props> = ({
   const items = React.useMemo(() => {
     const result: ErrorModel[] = [];
     for (let index = 0; index < restoration.length; index += 1) {
-      const movedIndex = index + restoration.startIndex;
+      const movedIndex = index + restoration.startIndex + 1;
       const value = signal[movedIndex]?.y || 0;
       const restoredValue = restoredSignal[index]?.y || 0;
 

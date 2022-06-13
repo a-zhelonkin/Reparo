@@ -6,6 +6,6 @@ export interface ResolutionModel {
 
 export const defaultResolutionModel: Readonly<ResolutionModel> = {
   min: 0,
-  max: 25,
-  step: 0.01,
+  max: 10,
+  step: 0.001,
 };
