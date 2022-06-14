@@ -14,32 +14,38 @@ export const RestorationInput: React.FC<Props> = ({
   className,
   value,
   onChange,
-}) => {
-  return (
-    <div className={cn(styles.root, className)}>
-      <label>
-        Начало
-        <ReparoNumberInput
-          value={value.startIndex}
-          onChange={(startIndex) => onChange({ startIndex })}
-        />
-      </label>
+}) => (
+  <div className={cn(styles.root, className)}>
+    <label>
+      Начало
+      <ReparoNumberInput
+        value={value.startIndex}
+        onChange={(startIndex) => onChange({ startIndex })}
+      />
+    </label>
 
-      <label>
-        Количество
-        <ReparoNumberInput
-          value={value.length}
-          onChange={(length) => onChange({ length })}
-        />
-      </label>
+    <label>
+      Количество
+      <ReparoNumberInput
+        value={value.length}
+        onChange={(length) => onChange({ length })}
+      />
+    </label>
 
-      <label>
-        Пересечение
-        <ReparoNumberInput
-          value={value.crossing}
-          onChange={(crossing) => onChange({ crossing })}
-        />
-      </label>
-    </div>
-  );
-};
+    <label>
+      Пересечение
+      <ReparoNumberInput
+        value={value.crossing}
+        onChange={(crossing) => onChange({ crossing })}
+      />
+    </label>
+
+    <label>
+      Порядок
+      <ReparoNumberInput
+        value={value.order}
+        onChange={(order) => onChange({ order })}
+      />
+    </label>
+  </div>
+);

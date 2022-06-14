@@ -7,13 +7,74 @@ interface RepairSignalOptions {
 }
 
 /**
- *
+ * @param signal
+ * @param startIndex  -> v
+ * @param length      -> m
+ * @param crossing    -> L
+ * @param order       -> p
+ */
+function v2({
+  signal,
+  restoration: { startIndex, length, crossing, order },
+}: RepairSignalOptions): Promise<Point[]> {
+  return new Promise((resolve) => {
+    const A = ((2 * order - 1) * Math.PI) / crossing;
+    const B = Math.PI / crossing;
+    const D = [];
+    for (let i = 1; i < crossing; i += 1) {
+      D[i] = Math.sin(A * i) / Math.sin(B * i);
+    }
+
+    const points: Point[] = [];
+    for (let j = 1; j <= length; j += 1) {
+      let y =
+        (2 * order - 1) *
+        (signal[startIndex + j - crossing].y +
+          signal[startIndex + j + crossing].y);
+
+      let i = j;
+      while (i < crossing) {
+        y += D[i] * signal[startIndex + j - i].y;
+        i += 1;
+      }
+
+      i = 1;
+      while (i < j) {
+        y += D[i] * signal[startIndex + j - i - crossing].y;
+        i += 1;
+      }
+
+      i = length + 1 - j;
+      while (i < crossing) {
+        y += D[i] * signal[startIndex + j + i].y;
+        i += 1;
+      }
+
+      i = 1;
+      while (i <= length - j) {
+        y += D[i] * signal[startIndex + j + i + crossing].y;
+        i += 1;
+      }
+
+      y /= 2 * crossing;
+
+      points.push({
+        x: signal[startIndex + j].x,
+        y,
+      });
+    }
+
+    resolve(points);
+  });
+}
+
+/**
  * @param signal
  * @param startIndex  -> v
  * @param length      -> m
  * @param crossing    -> L
  */
-export function repairSignal({
+function v1({
   signal,
   restoration: { startIndex, length, crossing },
 }: RepairSignalOptions): Promise<Point[]> {
@@ -50,4 +111,9 @@ export function repairSignal({
 
     resolve(points);
   });
+}
+
+export function repairSignal(options: RepairSignalOptions): Promise<Point[]> {
+  // return v1(options);
+  return v2(options);
 }

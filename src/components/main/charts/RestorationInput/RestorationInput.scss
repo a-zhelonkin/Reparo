@@ -2,7 +2,7 @@
   display: grid;
   grid-gap: 8px;
   grid-template-rows: auto;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 
   label {
     max-width: 100%;
