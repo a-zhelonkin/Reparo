@@ -8,10 +8,10 @@ module.exports = merge(base, {
     mode: 'production',
     plugins: [
         new TerserPlugin({extractComments: false}),
-        new CompressionPlugin({
-            test: /\.(js|css)$/,
-            deleteOriginalAssets: true,
-            exclude: ['sw.js'],
-        }),
+        // new CompressionPlugin({
+        //     test: /\.(js|css)$/,
+        //     deleteOriginalAssets: true,
+        //     exclude: ['sw.js'],
+        // }),
     ],
 });
