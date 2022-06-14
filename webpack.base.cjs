@@ -61,6 +61,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(publicDirectory, "template.html"),
+      publicPath: '/Reparo'
     }),
     new MiniCssExtractPlugin({
       ignoreOrder: true,
