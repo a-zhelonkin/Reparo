@@ -1,15 +1,20 @@
+import cn from "classnames";
+import styles from "components/shared/ReparoInput/ReparoInput.scss";
 import React from "react";
 
-interface Props {
-  readonly className?: string;
+type ButtonProps = JSX.IntrinsicElements["button"];
+type OmittedButtonProps = Omit<ButtonProps, "children">;
+
+interface Props extends OmittedButtonProps {
   readonly children: React.ReactNode;
-  readonly onClick: () => void;
 }
 
 export const ReparoButton: React.FC<Props> = ({
   className,
   children,
-  onClick,
+  ...rest
 }) => (
-  <button className={className} children={children} onClick={() => onClick()} />
+  <button {...rest} className={cn(styles.root, className)}>
+    {children}
+  </button>
 );

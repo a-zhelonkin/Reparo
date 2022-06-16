@@ -1,6 +1,12 @@
 import cn from "classnames";
 import { ReparoNumberInput } from "components/shared/ReparoInput/ReparoNumberInput";
-import { RestorationModel } from "domain/RestorationModel";
+import { ReparoSelect } from "components/shared/ReparoSelect/ReparoSelect";
+import {
+  RestorationModel,
+  RestorationType,
+  restorationTypeToString,
+  restorationTypeValues,
+} from "domain/RestorationModel";
 import React from "react";
 import styles from "./RestorationInput.scss";
 
@@ -15,7 +21,7 @@ export const RestorationInput: React.FC<Props> = ({
   value,
   onChange,
 }) => (
-  <div className={cn(styles.root, className)}>
+  <form className={cn(styles.root, className)}>
     <label>
       Начало
       <ReparoNumberInput
@@ -45,7 +51,18 @@ export const RestorationInput: React.FC<Props> = ({
       <ReparoNumberInput
         value={value.order}
         onChange={(order) => onChange({ order })}
+        disabled={value.type === RestorationType.v1}
       />
     </label>
-  </div>
+
+    <label>
+      Порядок
+      <ReparoSelect<RestorationType>
+        value={value.type}
+        onChange={(type) => onChange({ type })}
+        items={restorationTypeValues}
+        itemToString={restorationTypeToString}
+      />
+    </label>
+  </form>
 );

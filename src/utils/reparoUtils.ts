@@ -1,5 +1,5 @@
 import { Point } from "domain/Point";
-import { RestorationModel } from "domain/RestorationModel";
+import { RestorationModel, RestorationType } from "domain/RestorationModel";
 
 interface RepairSignalOptions {
   readonly signal: ReadonlyArray<Point>;
@@ -7,7 +7,7 @@ interface RepairSignalOptions {
 }
 
 /**
- * @param signal
+ * @param signal      -> x
  * @param startIndex  -> v
  * @param length      -> m
  * @param crossing    -> L
@@ -69,7 +69,7 @@ function v2({
 }
 
 /**
- * @param signal
+ * @param signal      -> x
  * @param startIndex  -> v
  * @param length      -> m
  * @param crossing    -> L
@@ -114,6 +114,12 @@ function v1({
 }
 
 export function repairSignal(options: RepairSignalOptions): Promise<Point[]> {
-  // return v1(options);
-  return v2(options);
+  switch (options.restoration.type) {
+    case RestorationType.v1:
+      return v1(options);
+    case RestorationType.v2:
+      return v2(options);
+    default:
+      return Promise.resolve([]);
+  }
 }
