@@ -56,7 +56,7 @@ export const RestorationInput: React.FC<Props> = ({
     </label>
 
     <label>
-      Порядок
+      Алгоритм
       <ReparoSelect<RestorationType>
         value={value.type}
         onChange={(type) => onChange({ type })}
